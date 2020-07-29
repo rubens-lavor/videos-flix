@@ -5,7 +5,7 @@ styled é uma biblioteca que facilita um pouco
 nela só precisa do css, o padão de receber as
 props ela já faz automaticamente
 */
-const Button = styled.a /* .a é a tag */ `
+const Button = styled.button /* .a é a tag */ `
 color: var(--white);
 border: 1px solid var(--white);
 box-sizing: border-box;
