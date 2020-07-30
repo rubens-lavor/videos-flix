@@ -1,81 +1,81 @@
 import React, { useState } from 'react';
-import PageDefault from '../../../components/PageDefault/PageDefault'
 import { Link } from 'react-router-dom';
-import FormField from '../../../components/FormField/FormField'
+import PageDefault from '../../../components/PageDefault/PageDefault';
+import FormField from '../../../components/FormField/FormField';
+import Button from '../../../components/Button/Button';
 
 function CadastroCategoria() {
+  const valoresIniciais = {
+    nome: '',
+    descricao: '',
+    cor: '',
+  };
+
+  const [categorias, setCategorias] = useState([]);
+
+  const [values, setValues] = useState(valoresIniciais);
+
+  function setValue(chave, valor) {
+    setValues({
+      ...values,
+      [chave]: valor, // nome: 'valor'
+    });
+  }
+
+  function handleChange(ev) {
+    /* const { getAttribute, value } = ev.target; */
+    setValue(
+      ev.target.getAttribute('name'),
+      ev.target.value,
+    );
+  }
+  return (
+    <PageDefault>
+
+      <h3>
+        Cadrastro de Categoria:
+        {values.nome}
+      </h3>
+
+      <form onSubmit={function handleSubmit(ev) {
+        ev.preventDefault();
+        // console.log("submit")
+        setCategorias([
+          ...categorias,
+          values,
+        ]);
+
+        setValues(valoresIniciais);
+      }}
+      >
+
+        <FormField
+          label="Nome da categoria: "
+          type="text"
+          name="nome"
+          value={values.nome}
+          onChange={handleChange}
+        />
+
+        <FormField
+          label="Descrição: "
+          type="textarea"
+          name="descricao"
+          value={values.descricao}
+          onChange={handleChange}
+        />
 
 
-    const valoresIniciais = {
-        nome: '',
-        descricao: '',
-        cor: '#121212',
-    }
+        <FormField
+          label="cor: "
+          type="color"
+          name="cor"
+          value={values.cor}
+          onChange={handleChange}
+        />
 
-    const [categorias, setCategorias] = useState([]);
-
-    const [values, setValues] = useState(valoresIniciais);
-
-    function setValue(chave, valor) {
-        setValues({
-            ...values,
-            [chave]: valor, //nome: 'valor'
-        })
-    }
-
-    function handleChange(ev) {
-        /*const { getAttribute, value } = ev.target;*/
-        setValue(
-            ev.target.getAttribute('name'),
-            ev.target.value
-        );
-    }
-    return (
-        <PageDefault>
-
-            <h3>Cadrastro de Categoria: {values.nome}</h3>
-
-            <form onSubmit={function handleSubmit(ev) {
-                ev.preventDefault();
-                //console.log("submit")
-                setCategorias([
-                    ...categorias,
-                    values
-                ]);
-
-                setValues(valoresIniciais)
-            }}>
-
-
-                <FormField
-                    label="Nome da categoria: "
-                    type="text"
-                    name="nome"
-                    value={values.nome}
-                    onChange={handleChange}
-                />
-                {/*
-                <FormField
-                    label="Descrição: "
-                    type="text"
-                    name="descricao"
-                    value={values.descricao}
-                    onChange={handleChange}
-                >
-                    textarea
-                    
-                </FormField>
-                */}
-
-                <FormField
-                    label="cor: "
-                    type="color"
-                    name="cor"
-                    value={values.cor}
-                    onChange={handleChange}
-                />
-
-                {/*
+        {/*
+        
                 <div>
                     <label>
                         Nome da Categoria:
@@ -87,7 +87,7 @@ function CadastroCategoria() {
                         />
                     </label>
                 </div>
-                
+
                 <div>
                     <label>
                         Descrição:
@@ -106,7 +106,7 @@ function CadastroCategoria() {
                     <label>
 
                         Cor:
-                        
+
                         <input
 
                             type="color"
@@ -120,26 +120,25 @@ function CadastroCategoria() {
                 </div>
                 */}
 
-                <button>
-                    Cadastrar
-                </button>
-            </form>
+        <Button>
+          Cadastrar
+        </Button>
+      </form>
 
-            <ul>
-                {categorias.map((categoria, indice) => {
-                    return (
-                        <li key={`${categoria}${indice}`}>
-                            {categoria.nome}
-                        </li>
-                    )
-                })}
-            </ul>
+      <ul>
+        {categorias.map((categoria, indice) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <li key={`${categoria}${indice}`}>
+            {categoria.nome}
+          </li>
+        ))}
+      </ul>
 
-            <Link to="/">
-                Ir para Home
+      <Link to="/">
+        Ir para Home
       </Link>
-        </PageDefault>
-    )
+    </PageDefault>
+  );
 }
 
 export default CadastroCategoria;

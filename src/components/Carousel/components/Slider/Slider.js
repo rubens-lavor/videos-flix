@@ -39,21 +39,22 @@ img {
 
 `;
 
+// eslint-disable-next-line react/prop-types
 const Slider = ({ children }) => (
-    <Container>
-        <SlickSlider {...{
-            dots:false,
-            infinite: false,
-            speed:300,
-            centerMode:false,
-            variableWidth: true,
-            adaptiveHeight: true,
-        }}
-        >
-            {children}
+  <Container>
+    <SlickSlider {...{
+      dots: false,
+      infinite: false,
+      speed: 300,
+      centerMode: false,
+      variableWidth: true,
+      adaptiveHeight: true,
+    }}
+    >
+      {children}
 
-        </SlickSlider>
-    </Container>
-)
+    </SlickSlider>
+  </Container>
+);
 
 export default Slider;
