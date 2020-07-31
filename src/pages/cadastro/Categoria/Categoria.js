@@ -74,52 +74,6 @@ function CadastroCategoria() {
           onChange={handleChange}
         />
 
-        {/*
-        
-                <div>
-                    <label>
-                        Nome da Categoria:
-                    <input
-                            type="text"
-                            name="nome"
-                            value={values.nome}
-                            onChange={handleChange}
-                        />
-                    </label>
-                </div>
-
-                <div>
-                    <label>
-                        Descrição:
-                    <textarea
-                            type="text"
-                            value={values.descricao}
-                            name="descricao"
-                            onChange={handleChange}
-                        />
-                    </label>
-
-                </div>
-
-                <div>
-
-                    <label>
-
-                        Cor:
-
-                        <input
-
-                            type="color"
-                            value={values.cor}
-                            name="cor"
-                            onChange={handleChange}
-
-                        />
-                    </label>
-
-                </div>
-                */}
-
         <Button>
           Cadastrar
         </Button>
