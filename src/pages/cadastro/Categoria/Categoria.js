@@ -32,7 +32,9 @@ function CadastroCategoria() {
 
   useEffect(() => {
 
-    const URL = 'https://video-flix.herokuapp.com/categorias';
+    const URL =  window.location.hostname.includes('localhost') 
+    ? 'http://localhost:8080/categorias' 
+    : 'https://video-flix.herokuapp.com/categorias';
 
     fetch(URL).then(async (response) => {
       console.log(response)
