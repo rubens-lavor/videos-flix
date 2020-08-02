@@ -31,7 +31,6 @@ function CadastroCategoria() {
   }
 
   useEffect(() => {
-    console.log('oi')
 
     const URL = 'http://localhost:8080/categorias';
 
@@ -42,25 +41,6 @@ function CadastroCategoria() {
         ...resposta,
       ]);
     });
-
-    // eslint-disable-next-line
-    {/*setTimeout(() => {
-      setCategorias([
-        ...categorias,
-        {
-          "id":1,
-          "nome": "Front End",
-          "descricao": "Uma categoria",
-          "cor": "#6bd1ff"
-      },
-      {
-          "id":2,
-          "nome": "Back End",
-          "descricao": "Outra categoria",
-          "cor": "#6bd1ff"
-      }
-      ]);
-    }, 4*1000);*/}
 
   }, [
     values.nome,
