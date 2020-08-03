@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault/PageDefault';
 import FormField from '../../../components/FormField/FormField';
 import Button from '../../../components/Button/Button';
+import useForm from '../../../hooks/useForm';
+
 
 function CadastroCategoria() {
   const valoresIniciais = {
@@ -11,23 +13,11 @@ function CadastroCategoria() {
     cor: '',
   };
 
+  const { handleChange, values, clearForm } = useForm(valoresIniciais)
+;
   const [categorias, setCategorias] = useState([]);
 
-  const [values, setValues] = useState(valoresIniciais);
 
-  function setValue(chave, valor) {
-    setValues({
-      ...values,
-      [chave]: valor, // nome: 'valor'
-    });
-  }
-
-  function handleChange(ev) {
-    setValue(
-      ev.target.getAttribute('name'),
-      ev.target.value,
-    );
-  }
 
   useEffect(() => {
 
@@ -36,7 +26,7 @@ function CadastroCategoria() {
     : 'https://video-flix.herokuapp.com/categorias';
 
     fetch(URL).then(async (response) => {
-      console.log(response)
+      //console.log(response)
       const resposta = await response.json();
       setCategorias([
         ...resposta,
@@ -64,7 +54,7 @@ function CadastroCategoria() {
           values,
         ]);
 
-        setValues(valoresIniciais);
+        clearForm();
       }}
       >
 
@@ -107,8 +97,8 @@ function CadastroCategoria() {
       <ul>
         {categorias.map((categoria, indice) => (
           // eslint-disable-next-line react/no-array-index-key
-          <li key={`${categoria}${indice}`}>
-            {categoria.nome}
+          <li key={`${categoria.titulo}`}>
+            {categoria.titulo}
           </li>
         ))}
       </ul>
