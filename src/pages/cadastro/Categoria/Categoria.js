@@ -23,7 +23,6 @@ function CadastroCategoria() {
   }
 
   function handleChange(ev) {
-    /* const { getAttribute, value } = ev.target; */
     setValue(
       ev.target.getAttribute('name'),
       ev.target.value,
