@@ -69,14 +69,17 @@ const Input = styled.input`
 
 function FormField({
   // eslint-disable-next-line react/prop-types
-  label, type, name, value, onChange,
+  label, type, name, value, onChange, suggestions,
 }) {
+
   // eslint-disable-next-line react/destructuring-assignment
   const fielId = `id_${name}`;
   const isTextarea = type === "textarea"
   const Tag = isTextarea ? "textarea" : "input";
 
   const hasValue = Boolean(value.length);
+  const hasSuggestion = Boolean(suggestions.length);
+
   return (
     <FormFieldWrapper>
       <Label
@@ -90,11 +93,28 @@ function FormField({
           value={value}
           hasValue={hasValue}
           onChange={onChange}
+          autoComplete={hasSuggestion ? 'off' : 'on'}
+          list={hasSuggestion ? `suggestionFor_${fielId}` : undefined}
         />
 
         <Label.Text>
           {label}
+
         </Label.Text>
+
+        {
+          hasSuggestion && (
+            <datalist id={`suggestionFor_${fielId}`}>
+              {
+                suggestions.map((suggestion) => (
+                  <option value={suggestion} key={`suggestionFor_${fielId}_option${suggestion}`}>
+                    {suggestion}
+                  </option>
+                ))
+              }
+            </datalist>
+          )
+        }
 
       </Label>
     </FormFieldWrapper>
@@ -105,6 +125,7 @@ FormField.defaultProps = {
   type: 'text',
   value: '',
   onChange: () => { },
+  suggestions: [],
 };
 
 FormField.prototype = {
@@ -113,6 +134,7 @@ FormField.prototype = {
   name: PropTypes.string.isRequired,
   value: PropTypes.string,
   onChange: PropTypes.func,
+  suggestions: PropTypes.arrayOf(PropTypes.string),
 
 };
 
