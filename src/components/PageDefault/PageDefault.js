@@ -1,7 +1,7 @@
 import React from 'react'
 import Footer from '../Footer';
 import Menu from '../Menu/Menu';
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const Main = styled.main`
     background-color: var(--black);
@@ -10,20 +10,21 @@ const Main = styled.main`
      padding-top:50px ;
      padding-left:5%;
      padding-right:5% ;
-
-
+     ${({ padding }) => css `
+        padding: ${padding};
+    `}
 `;
 
 
-function PageDefault(props) {
+function PageDefault({ children, paddingAll }) {
 
     return (
         <React.Fragment>
             
             <Menu />
 
-            <Main>
-                {props.children}
+            <Main padding={paddingAll}>
+                {children}
             </Main>
 
             <Footer />
