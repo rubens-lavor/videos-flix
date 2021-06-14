@@ -1,10 +1,3 @@
 ### VideoFlix
 
-
-#### Sobre o projeto 
-O projeto foi desenvolvido com o frontend usando React e um simples backend com JSON Server
-
-#### Tecnologias 
-
-
-
+O projeto foi desenvolvido na semana de imersão ao react da alura.
